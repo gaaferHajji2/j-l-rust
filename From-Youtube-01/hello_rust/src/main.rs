@@ -14,7 +14,7 @@ fn main() {
 
 
     /*
-     * Testing The Variables Types
+     * Testing The Integer Type
      */
     let a1 = 98_999;
     let a2 = 0xfff;
@@ -22,5 +22,13 @@ fn main() {
     let a4 = 0b1111_0000;
     let a5 = b'a';
 
-    println!("a1 is: {}, a2 is: {}, a3 is: {}, a4 is: {}, a5 is: {}", a1, a2, a3, a4, a5)
+    println!("a1 is: {}, a2 is: {}, a3 is: {}, a4 is: {}, a5 is: {}", a1, a2, a3, a4, a5);
+
+    /*
+     * Testing Floating Types
+     */
+    let a6 = 2.5;
+    let a7: f32 = 4.9;
+
+    println!("a6 is: {}, a7 is: {}", a6, a7);
 }
