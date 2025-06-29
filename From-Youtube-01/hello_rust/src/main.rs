@@ -31,4 +31,13 @@ fn main() {
     let a7: f32 = 4.9;
 
     println!("a6 is: {}, a7 is: {}", a6, a7);
+
+    /*
+     * Testing Boolean Values
+    */
+    let t = true;
+    let f = false;
+
+    println!("The True Value Is: {}", t);
+    println!("The False Value Is: {}", f);
 }
