@@ -62,4 +62,22 @@ fn main() {
     let z1  = tup.2;
 
     println!("The value of x1 is: {}, the value of y1 is: {}, the value of z1 is: {}", x1, y1, z1);
+
+    // Testing Arrays
+    let arr = [1, 2, 3, 4, 5];
+
+    // println!("The Array is: {}", arr); // This will give compiler error
+
+    let temp = arr[3];
+
+    println!("The 1st value is: {}, the 2nd value is: {}, the 3rd value is: {}, the 4th value: {temp}", 
+        arr[0], arr[1], arr[2]);
+    
+    // for better memory safety, when dealing with arrays and indexes
+    let index = 3;
+
+    match arr.get(index) {
+        Some(element) => println!("The element is: {element}"),
+        None => println!("Please check the index"),
+    }
 }
