@@ -40,4 +40,11 @@ fn main() {
 
     println!("The True Value Is: {}", t);
     println!("The False Value Is: {}", f);
+
+    // Test chars
+    let a = 'a';
+    let b: char = 'b';
+    let c: char = '😊';
+
+    println!("The value of a is: {}, The value of b is: {}, the value of c is: {}", a, b, c);
 }
