@@ -47,4 +47,19 @@ fn main() {
     let c: char = '😊';
 
     println!("The value of a is: {}, The value of b is: {}, the value of c is: {}", a, b, c);
+
+    // Testing tuples
+    let tup: (i32, f64, u8) = (500, 6.5, 1);
+
+    // We can destructing tuple:
+    let (x, y, z) = tup;
+
+    println!("The value of x is: {}, the value of y is: {}, the value of z is: {}", x, y, z);
+
+    // Access the tuple element directly
+    let x1 = tup.0;
+    let y1: f64 = tup.1;
+    let z1  = tup.2;
+
+    println!("The value of x1 is: {}, the value of y1 is: {}, the value of z1 is: {}", x1, y1, z1);
 }
