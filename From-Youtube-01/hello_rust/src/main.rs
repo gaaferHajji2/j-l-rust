@@ -80,4 +80,9 @@ fn main() {
         Some(element) => println!("The element is: {element}"),
         None => println!("Please check the index"),
     }
+
+    // Testing Constants
+    const MAX_USERS: u32 = 1000;
+
+    println!("The max users is: {MAX_USERS}");
 }
