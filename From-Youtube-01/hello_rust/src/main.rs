@@ -85,4 +85,23 @@ fn main() {
     const MAX_USERS: u32 = 1000;
 
     println!("The max users is: {MAX_USERS}");
+
+    // Testing Shadowing
+    let a = 5;
+
+    let a = a + 1; // Shadowing the first 'a'
+
+    println!("The value of a is: {a}");
+
+    {
+        let a = a * 2; // Shadowing within new scope
+        println!("The value of a in inner scope: {a}");
+    }
+
+    println!("The value of a outside scope is: {a}");
+
+    let spaces = "       ";
+    let spaces = spaces.len();
+
+    println!("The spaces value is: {spaces}");
 }
