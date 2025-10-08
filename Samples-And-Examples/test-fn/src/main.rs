@@ -8,8 +8,6 @@ fn mul(t1: f64, t2: f64) -> f64 {
 
 fn main() {
     println!("The add is: {}", add(1, 2));
-
     println!("The mul is: {}", mul(2.1, 3.2));
-
     println!("Hello, world!");
 }
