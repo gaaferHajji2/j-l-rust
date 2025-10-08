@@ -5,13 +5,16 @@ fn main() {
     for num in arr {
         println!("The num is: {num}");
     }
-
     println!("----------------------------------");
 
     for i in 1..6 {
         println!("i is: {i}");
     }
+    println!("----------------------------------");
 
+    for num in arr.iter() {
+        println!("The num is: {}", num)
+    }
     println!("----------------------------------");
 
     println!("Hello, world!");
