@@ -1,3 +1,4 @@
+
 fn add(t1: i32, t2: i32) -> i32 {
     return t1 + t2;
 }
@@ -10,4 +11,8 @@ fn main() {
     println!("The add is: {}", add(1, 2));
     println!("The mul is: {}", mul(2.1, 3.2));
     println!("Hello, world!");
+
+    let t1: String = String::from("Hello Jafar Loka String Function");
+
+    println!("The msg is: {}", t1)
 }
