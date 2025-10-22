@@ -42,6 +42,5 @@ fn main() {
         Shape::J02(t3, t4) => println!("The shape is J02 ==> {}, {}", t3, t4),
     };
 
-
     println!("Hello, world!");
 }
