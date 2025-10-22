@@ -1,3 +1,9 @@
+//define enum
+enum Shape {
+    J01(i32),
+    J02(f64, f64)
+}
+
 fn main() {
 
     let number: i32 = 3;
@@ -24,6 +30,16 @@ fn main() {
         (0, y) => println!("Point on y, {}", y),
         (x, 0) => println!("Point on x, {}", x),
         (x, y)=> println!("Point on x, y, {}, {}", x, y)
+    };
+
+    // matching enum
+    let t1 = Shape::J02(1.1, 1.2);
+
+    let _ = Shape::J01(1);
+
+    match t1 {
+        Shape::J01(t2) => println!("The shape is J01 ==> {}", t2),
+        Shape::J02(t3, t4) => println!("The shape is J02 ==> {}, {}", t3, t4),
     };
 
 
