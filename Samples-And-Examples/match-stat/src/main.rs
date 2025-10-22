@@ -17,5 +17,15 @@ fn main() {
         _ => println!("Something else"), // if we don't set it, it will give error
     }
 
+    // match tuples
+    let point: (i32, i32) = (0, 7);
+
+    match point {
+        (0, y) => println!("Point on y, {}", y),
+        (x, 0) => println!("Point on x, {}", x),
+        (x, y)=> println!("Point on x, y, {}, {}", x, y)
+    };
+
+
     println!("Hello, world!");
 }
