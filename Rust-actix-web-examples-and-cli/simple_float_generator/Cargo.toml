@@ -1,5 +1,5 @@
 [package]
-name = "todo_web_app_cli"
+name = "simple_float_generator"
 version = "0.1.0"
 edition = "2024"
 
