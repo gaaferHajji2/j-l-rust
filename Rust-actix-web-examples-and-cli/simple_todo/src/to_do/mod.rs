@@ -1,5 +1,6 @@
 pub mod structs;
 pub mod enums;
+pub mod traits;
 
 use std::fmt;
 use enums::TaskStatus;
