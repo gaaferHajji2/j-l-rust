@@ -5,7 +5,6 @@ use std::sync::atomic::AtomicBool;
 use std::sync::atomic::Ordering::Relaxed;
 
 fn main() {
-
     let shared_data = Arc::new((Mutex::new(false), Condvar::new()));
     let shared_data_clone = Arc::clone(&shared_data);
     let STOP = Arc::new(AtomicBool::new(false));
