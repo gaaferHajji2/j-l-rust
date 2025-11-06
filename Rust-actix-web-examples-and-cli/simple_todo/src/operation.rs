@@ -25,7 +25,7 @@ fn process_done(item: Done, command: String, state: &Map<String, Value>) {
     match command.as_str() {
         "get" => item.get(&item.super_struct.title, &state),
         "delete" => item.delete(&item.super_struct.title, &mut state),
-        "edit" => item.set_to_done(&item.super_struct.title, &mut state),
+        "edit" => item.set_to_pending(&item.super_struct.title, &mut state),
         _ => println!("check your command: {} for done", command)
     }
 }

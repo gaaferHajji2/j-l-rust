@@ -2,8 +2,7 @@ mod to_do;
 mod state;
 mod operation;
 
-use std::os::windows::process;
-use std::{env, result};
+use std::{env};
 
 use serde_json::Map;
 use serde_json::value::Value;
