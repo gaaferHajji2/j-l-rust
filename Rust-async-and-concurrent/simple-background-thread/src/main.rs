@@ -7,6 +7,7 @@ use std::sync::atomic::Ordering::Relaxed; // here we use Relaxed to avoid using 
 
 fn main() {
     let shared_data = Arc::new((Mutex::new(false), Condvar::new()));
+    // we create clones for each thread, so we can't change the state of app by accident
     let shared_data_clone = Arc::clone(&shared_data);
     let STOP = Arc::new(AtomicBool::new(false));
     let STOP_CLONE = Arc::clone(&STOP);
