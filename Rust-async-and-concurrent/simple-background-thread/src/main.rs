@@ -2,7 +2,8 @@ use std::sync::{Arc, Condvar, Mutex};
 use std::thread;
 use std::time::Duration;
 use std::sync::atomic::AtomicBool;
-use std::sync::atomic::Ordering::Relaxed;
+use std::sync::atomic::Ordering::Relaxed; // here we use Relaxed to avoid using condvar with wait 
+// every time
 
 fn main() {
     let shared_data = Arc::new((Mutex::new(false), Condvar::new()));
