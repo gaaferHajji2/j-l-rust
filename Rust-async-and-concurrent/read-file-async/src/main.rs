@@ -7,6 +7,7 @@ use tokio::time::{sleep, Duration};
 async fn read_file(filename: &str) -> Result<String, std::io::Error> {
     let mut file = AsyncFile::open(filename).await?;
     let mut contents = String::new();
+    // here we use AsyncReadExt for read_to_string
     file.read_to_string(&mut contents).await?;
     Ok(contents)
 }
