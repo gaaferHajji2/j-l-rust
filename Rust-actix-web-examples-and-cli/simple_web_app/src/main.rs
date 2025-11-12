@@ -1,3 +1,4 @@
+mod views;
 use actix_web::{web, App, HttpServer, Responder, HttpRequest};
 
 async fn say_hello(req: HttpRequest) -> impl Responder {
