@@ -6,6 +6,7 @@ use std::sync::atomic::Ordering::Relaxed; // here we use Relaxed to avoid using 
 // every time
 
 fn main() {
+    // here is Mutex represent the lock 
     let shared_data = Arc::new((Mutex::new(false), Condvar::new()));
     // we create clones for each thread, so we can't change the state of app by accident
     let shared_data_clone = Arc::clone(&shared_data);
