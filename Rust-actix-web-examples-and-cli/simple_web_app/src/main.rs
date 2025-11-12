@@ -11,6 +11,7 @@ async fn say_hello(req: HttpRequest) -> impl Responder {
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         App::new()
+        .configure(views::views_factory)
         .route("/", web::get().to(say_hello))
         .route("/{name}", web::get().to(say_hello))
         .route("/hello/jloka", web::get().to(|| async { "Hello JLoka World"}))
