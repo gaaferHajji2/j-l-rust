@@ -1,11 +1,8 @@
 mod views;
-use actix_web::{web, App, HttpServer, Responder, HttpRequest};
-
-async fn say_hello(req: HttpRequest) -> impl Responder {
-    let name = req.match_info().get("name").unwrap_or("World");
-
-    format!("Hello {}", name)
-}
+mod to_do;
+mod operation;
+mod state;
+use actix_web::{App, HttpServer};
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
