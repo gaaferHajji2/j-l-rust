@@ -1,0 +1,19 @@
+use serde_json::{Map, json};
+use serde_json::value::Value;
+
+use crate::state::write_to_file;
+use super::super::enums::TaskStatus;
+
+pub trait Edit {
+    fn set_to_done(&self, title: &String, state: &mut Map<String, Value>) {
+        state.insert(title.to_string(), json!(TaskStatus::DONE.stringify()));
+        write_to_file("./jloka.json", state);
+        println!("Set todo with title: {} to DONE", title);
+    }
+
+    fn set_to_pending(&self, title: &str, state: &mut Map<String, Value>) {
+        state.insert(title.to_string(), json!(TaskStatus::PENDING.stringify()));
+        write_to_file("./jloka.json", state);
+        println!("Set todo with title: {} to DONE", title);
+    }
+}
