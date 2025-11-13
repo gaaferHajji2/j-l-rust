@@ -2,7 +2,6 @@ mod login;
 mod logout;
 mod profile;
 mod signup;
-mod todo;
 
 use actix_web::web::{ServiceConfig, get, scope};
 
