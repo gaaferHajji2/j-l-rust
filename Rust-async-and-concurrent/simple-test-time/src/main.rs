@@ -23,10 +23,17 @@ async fn task_03() {
     sleep(Duration::from_secs(2)).await;
 }
 
-#[tokio::main]
+#[tokio::main(flavor = "multi_thread", worker_threads=1)]
 async fn main() -> Result<(), Error> {
     let start_time = Instant::now();
-    tokio::join!(task_01(), task_02(), task_03());
+    // tokio::join!(task_01(), task_02(), task_03());
+    let _ = tokio::task::spawn(async {
+        let t1 = task_01();
+        let t2 = task_02();
+        let t3 = task_03();
+        tokio::join!(t1, t2, t3);
+    }).await;
+
     println!("Execution finished in: {:?}", start_time.elapsed());
     Ok(())
 }
