@@ -21,6 +21,8 @@ impl Future for CounterExample {
         println!("Count is: {}", self.count);
         sleep(Duration::from_secs(1));
         if self.count < 3 {
+            // The wake_by_ref function signals the associated task that should be scheduled
+            // for execution.
             cx.waker().wake_by_ref();
             Poll::Pending
         } else {
