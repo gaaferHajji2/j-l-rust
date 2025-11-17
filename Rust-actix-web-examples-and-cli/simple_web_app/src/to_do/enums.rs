@@ -13,13 +13,13 @@ impl TaskStatus {
         }
     }
 
-    pub fn from_string(status: String) -> Self {
-        match status.as_str() {
-            "DONE" => TaskStatus::DONE,
-            "PENDING" => TaskStatus::PENDING,
-            _ => panic!("status {} not ok", status)
-        }
-    }
+    // pub fn from_string(status: String) -> Self {
+    //     match status.as_str() {
+    //         "DONE" => TaskStatus::DONE,
+    //         "PENDING" => TaskStatus::PENDING,
+    //         _ => panic!("status {} not ok", status)
+    //     }
+    // }
 }
 
 impl fmt::Display for TaskStatus {

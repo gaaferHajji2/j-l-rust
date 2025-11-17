@@ -10,7 +10,7 @@ pub struct Done {
 
 impl Done {
     pub fn new (input_title: &str) -> Self {
-        let base = Base {
+        let base: Base = Base {
             title: input_title.to_string(),
             status: TaskStatus::DONE
         };
