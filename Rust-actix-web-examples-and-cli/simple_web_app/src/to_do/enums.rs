@@ -1,4 +1,5 @@
 use std::fmt;
+use serde::ser::{Serialize, Serializer, SerializeStruct};
 
 pub enum TaskStatus {
     DONE,
@@ -13,13 +14,21 @@ impl TaskStatus {
         }
     }
 
-    // pub fn from_string(status: String) -> Self {
-    //     match status.as_str() {
-    //         "DONE" => TaskStatus::DONE,
-    //         "PENDING" => TaskStatus::PENDING,
-    //         _ => panic!("status {} not ok", status)
-    //     }
-    // }
+    pub fn from_string(status: String) -> Self {
+        match status.as_str() {
+            "DONE" => TaskStatus::DONE,
+            "PENDING" => TaskStatus::PENDING,
+            _ => panic!("status {} not ok", status)
+        }
+    }
+}
+
+impl Serialize for TaskStatus {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer {
+        Ok(serializer.serialize_str(&self.stringify().as_str())?)
+    }
 }
 
 impl fmt::Display for TaskStatus {
