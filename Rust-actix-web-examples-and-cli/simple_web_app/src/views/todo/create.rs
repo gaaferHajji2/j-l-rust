@@ -3,7 +3,7 @@ use serde_json::Map;
 use actix_web::HttpRequest;
 
 use crate::to_do::{to_do_factory, enums::TaskStatus};
-use crate::state::{self, read_file};
+use crate::state::{read_file};
 use crate::operation::process_input;
 
 pub async fn create(req: HttpRequest) -> String {
