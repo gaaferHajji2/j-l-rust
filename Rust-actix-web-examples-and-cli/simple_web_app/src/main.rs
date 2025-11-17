@@ -2,6 +2,7 @@ mod views;
 mod to_do;
 mod operation;
 mod state;
+mod json_serialization;
 use actix_web::{App, HttpServer};
 
 #[actix_web::main]
