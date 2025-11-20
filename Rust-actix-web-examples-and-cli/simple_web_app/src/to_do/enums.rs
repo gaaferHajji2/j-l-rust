@@ -1,5 +1,5 @@
 use std::fmt;
-use serde::ser::{Serialize, Serializer, SerializeStruct};
+use serde::ser::{Serialize, Serializer};
 
 pub enum TaskStatus {
     DONE,
@@ -15,6 +15,7 @@ impl TaskStatus {
     }
 
     pub fn from_string(status: String) -> Self {
+        // println!("The status is: {}", status.as_str());
         match status.as_str() {
             "DONE" => TaskStatus::DONE,
             "PENDING" => TaskStatus::PENDING,
