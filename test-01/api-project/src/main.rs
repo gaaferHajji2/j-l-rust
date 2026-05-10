@@ -15,6 +15,7 @@ async fn main() {
             .service(get_name)
             .service(get_query_data)
             .service(get_jloka_data)
+            .service(get_response)
     })
     .bind("0.0.0.0:3000")
     .unwrap()
@@ -45,7 +46,7 @@ async fn get_jloka_data(jloka_data: Json<JLoka>) -> impl Responder {
     return HttpResponse::Ok().body(data);
 }
 
-#[get("/get-jloka-name")]
+#[get("/get-jloka-info")]
 async fn get_response()-> impl Responder {
     let jloka_data: JLoka = JLoka { name: "Jafar-Loka-01".to_string(), age: 26};
     let json_data: String = serde_json::to_string(&jloka_data).unwrap();
