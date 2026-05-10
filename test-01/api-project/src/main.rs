@@ -1,4 +1,4 @@
-use actix_web::{App, HttpResponse, HttpServer, Responder, get};
+use actix_web::{App, HttpResponse, HttpServer, Responder, get, web};
 
 #[actix_web::main]
 async fn main() {
@@ -14,5 +14,11 @@ async fn main() {
 
 #[get("/")]
 async fn return_hello() -> impl Responder {
-    return HttpResponse::Ok().body("Jafar Loka-01");
+    return HttpResponse::Ok().body("Jafar Loka-01")
+}
+
+#[get("/name/{name}")]
+async fn get_name(name: web::Path<String>) -> impl Responder {
+    let msg: String = format!("The name is: {}", name.into_inner());
+    return HttpResponse::Ok().body(msg)
 }
