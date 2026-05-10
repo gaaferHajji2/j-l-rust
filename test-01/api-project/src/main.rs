@@ -1,5 +1,5 @@
 use actix_web::{App, HttpResponse, HttpServer, Responder, get, post, web::{Json, Path, Query}};
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
 #[derive(Deserialize, Serialize)]
 struct JLoka {
@@ -43,4 +43,11 @@ async fn get_query_data(query_data: Query<JLoka>) -> impl  Responder {
 async fn get_jloka_data(jloka_data: Json<JLoka>) -> impl Responder {
     let data = format!("The username is: {} & age is: {}", jloka_data.name, jloka_data.age);
     return HttpResponse::Ok().body(data);
+}
+
+#[get("/get-jloka-name")]
+async fn get_response()-> impl Responder {
+    let jloka_data: JLoka = JLoka { name: "Jafar-Loka-01".to_string(), age: 26};
+    let json_data: String = serde_json::to_string(&jloka_data).unwrap();
+    return HttpResponse::Ok().json(json_data);
 }
