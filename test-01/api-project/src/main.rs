@@ -1,7 +1,7 @@
-use actix_web::{App, HttpResponse, HttpServer, Responder, get, post, web::{Json, Path, Query}};
+use actix_web::{App, HttpResponse, HttpServer, Responder, get, post, web::{self, Json, Path, Query}};
 use serde::{Deserialize, Serialize};
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Clone)]
 struct JLoka {
     name: String,
     age: i32
@@ -9,8 +9,12 @@ struct JLoka {
 
 #[actix_web::main]
 async fn main() {
-    HttpServer::new(|| {
+
+    let jloka = JLoka {name: "Jafar-Loka-01".to_string(), age: 26};
+
+    HttpServer::new(move || {
         App::new()
+            .app_data(web::Data::new(jloka.clone()))
             .service(return_hello)
             .service(get_name)
             .service(get_query_data)
