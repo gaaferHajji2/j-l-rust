@@ -3,7 +3,7 @@ use actix_web::{App, HttpResponse, HttpServer, Responder, get, web};
 #[actix_web::main]
 async fn main() {
     HttpServer::new(|| {
-        App::new().service(return_hello)
+        App::new().service(return_hello).service(get_name)
     })
     .bind("0.0.0.0:3000")
     .unwrap()
