@@ -1,7 +1,7 @@
 use actix_web::{App, HttpResponse, HttpServer, Responder, get, post, web::{Json, Path, Query}};
 use serde::Deserialize;
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Serialize)]
 struct JLoka {
     name: String,
     age: i32
