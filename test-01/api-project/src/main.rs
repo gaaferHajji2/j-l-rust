@@ -2,6 +2,7 @@ use std::sync::Mutex;
 
 use actix_web::{App, HttpResponse, HttpServer, Responder, get, post, web::{self, Json, Path, Query}};
 use serde::{Deserialize, Serialize};
+use serde_json::json;
 
 #[derive(Deserialize, Serialize, Clone)]
 struct JLoka {
@@ -34,6 +35,7 @@ async fn main() {
             .service(get_jloka_data)
             .service(get_response)
             .service(return_jloka)
+            .service(new_status)
     })
     .bind("0.0.0.0:3000")
     .unwrap()
@@ -81,4 +83,12 @@ async fn get_response()-> impl Responder {
     let jloka_data: JLoka = JLoka { name: "Jafar-Loka-01".to_string(), age: 26};
     let json_data: String = serde_json::to_string(&jloka_data).unwrap();
     return HttpResponse::Ok().json(json_data);
+}
+
+#[post("/new-status")]
+async fn new_status() -> impl Responder {
+    let message: serde_json::Value = json!({
+        "message": "Data Created Successfully"
+    });
+    return HttpResponse::Created().json(message.to_string());
 }
