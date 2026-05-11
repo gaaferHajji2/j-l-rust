@@ -29,8 +29,9 @@ async fn main() {
 }
 
 #[get("/")]
-async fn return_hello() -> impl Responder {
-    return HttpResponse::Ok().body("Jafar Loka-01")
+async fn return_hello(jloka: web::Data<JLoka>) -> impl Responder {
+    let msg : String = format!("Name is: {}, and Age is: {}", jloka.name, jloka.age);
+    return HttpResponse::Ok().body(msg)
 }
 
 #[get("/name/{name}")]
