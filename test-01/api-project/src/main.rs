@@ -36,6 +36,7 @@ async fn main() {
             .service(get_response)
             .service(return_jloka)
             .service(new_status)
+            .default_service(web::to(default_service))
     })
     .bind("0.0.0.0:3000")
     .unwrap()
@@ -91,4 +92,8 @@ async fn new_status() -> impl Responder {
         "message": "Data Created Successfully"
     });
     return HttpResponse::Created().json(message.to_string());
+}
+
+async fn default_service() -> impl Responder {
+    HttpResponse::NotFound().body("Not Found")
 }
