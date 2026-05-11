@@ -47,6 +47,16 @@ async fn return_hello(jloka: web::Data<JLoka>) -> impl Responder {
     return HttpResponse::Ok().body(msg)
 }
 
+#[get("/jloka")]
+async fn return_jloka(jloka: web::Data<JLokaMutex>) -> impl Responder {
+    let msg : String = format!(
+        "Name is: {}, and Age is: {}", 
+        jloka.name.lock().unwrap(), 
+        jloka.age.lock().unwrap()
+    );
+    return HttpResponse::Ok().body(msg)
+}
+
 #[get("/name/{name}")]
 async fn get_name(name: Path<String>) -> impl Responder {
     let msg: String = format!("The name is: {}", name.into_inner());
