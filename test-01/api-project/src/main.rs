@@ -33,6 +33,7 @@ async fn main() {
             .service(get_query_data)
             .service(get_jloka_data)
             .service(get_response)
+            .service(return_jloka)
     })
     .bind("0.0.0.0:3000")
     .unwrap()
