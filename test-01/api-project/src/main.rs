@@ -1,3 +1,5 @@
+use std::sync::Mutex;
+
 use actix_web::{App, HttpResponse, HttpServer, Responder, get, post, web::{self, Json, Path, Query}};
 use serde::{Deserialize, Serialize};
 
@@ -7,14 +9,25 @@ struct JLoka {
     age: i32
 }
 
+struct JLokaMutex {
+    name: Mutex<String>,
+    age: Mutex<i32>
+}
+
 #[actix_web::main]
 async fn main() {
 
-    let jloka = JLoka {name: "Jafar-Loka-01".to_string(), age: 26};
+    let jloka: JLoka = JLoka {name: "Jafar-Loka-01".to_string(), age: 26};
+    let jloka_mutex: web::Data<JLokaMutex> = web::Data::new(
+        JLokaMutex {    name: Mutex::new(String::from("Jafar Loka-01 Mutex Example")), 
+                        age: Mutex::new(26)
+        }
+    );
 
     HttpServer::new(move || {
         App::new()
             .app_data(web::Data::new(jloka.clone()))
+            .app_data(jloka_mutex.clone())
             .service(return_hello)
             .service(get_name)
             .service(get_query_data)
