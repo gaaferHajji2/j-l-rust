@@ -35,6 +35,7 @@ async fn main() {
             .service(get_jloka_data)
             .service(get_response)
             .service(return_jloka)
+            .service(web::scope("/api").route("/hello", web::get().to(scope_handler)))
             .service(new_status)
             .default_service(web::to(default_service))
     })
@@ -43,6 +44,10 @@ async fn main() {
     .run()
     .await
     .unwrap();
+}
+
+async fn scope_handler() -> impl Responder {
+    return HttpResponse::Ok().body("JLoka Scope Test")
 }
 
 #[get("/")]
