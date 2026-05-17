@@ -7,7 +7,7 @@ async fn main() {
             .service(jloka_hello)
             .service(
                 web::scope("/world")
-                    .route("/world", web::get().to(jloka_world))
+                    .route("", web::get().to(jloka_world))
                     .wrap(from_fn(my_middleware))
             )
             // .wrap(from_fn(my_middleware))
