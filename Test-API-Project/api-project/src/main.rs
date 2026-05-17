@@ -54,7 +54,10 @@ async fn get_scope_handler() -> impl Responder {
 }
 
 async fn post_scope_handler() -> impl Responder {
-    return HttpResponse::Ok().body("JLoka Test Post With Scope")
+    let message: serde_json::Value = json!({
+        "message": "JLoka Test Post With Scope"
+    });
+    return HttpResponse::Ok().json(message)
 }
 
 #[get("/")]
