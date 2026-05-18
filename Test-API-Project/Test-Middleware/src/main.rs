@@ -1,4 +1,4 @@
-use actix_web::{App, Error, HttpResponse, HttpServer, Responder, body::MessageBody, dev::{ServiceRequest, ServiceResponse}, get, middleware::{Next, from_fn}, web};
+use actix_web::{App, Error, HttpMessage, HttpRequest, HttpResponse, HttpServer, Responder, body::MessageBody, dev::{ServiceRequest, ServiceResponse}, get, middleware::{Next, from_fn}, web};
 
 #[actix_web::main]
 async fn main() {
@@ -15,17 +15,25 @@ async fn main() {
 }
 
 #[get("/hello")]
-async fn jloka_hello() -> impl Responder {
-    return HttpResponse::Ok().body("Hello World from Jafar Loka-01")
+async fn jloka_hello(req: HttpRequest) -> impl Responder {
+    match req.extensions().get::<String>() {
+        Some(msg) => HttpResponse::Ok().body(format!("The message from JLoka is: {}", msg)),
+        None => HttpResponse::Ok().body("No Message Found")
+    }
 }
 
 // #[get("/world")]
-async fn jloka_world() -> impl Responder {
-    return HttpResponse::Ok().body("Hello World from Jafar Loka-02")
+async fn jloka_world(req: HttpRequest) -> impl Responder {
+    
+    match req.extensions().get::<String>() {
+        Some(msg) => HttpResponse::Ok().body(format!("The message from JLoka is: {}", msg)),
+        None => HttpResponse::Ok().body("No Message Found")
+    }
 }
 
 async fn my_middleware(req: ServiceRequest, next: Next<impl MessageBody>) -> Result<ServiceResponse<impl MessageBody>, Error> {
     println!("Hello From My Middleware");
+    req.extensions_mut().insert("Hello From JLoka Middleware".to_string());
     // Ok(req.into_response(HttpResponse::Unauthorized().body("Unauthorized Test")))
     next.call(req).await
 }
