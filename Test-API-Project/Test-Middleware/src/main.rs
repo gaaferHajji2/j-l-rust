@@ -4,7 +4,7 @@ use actix_web::{App, Error, HttpMessage, HttpRequest, HttpResponse, HttpServer, 
 async fn main() {
     HttpServer::new(|| {
         App::new()
-        .service(web::redirect("/hello", "/world"))
+            // .service(web::redirect("/hello", "/world"))
             .service(jloka_hello)
             .service(
                 web::scope("/world")
@@ -15,12 +15,11 @@ async fn main() {
     }).bind("0.0.0.0:3000").unwrap().run().await.unwrap()
 }
 
-#[get("/hello")]
+#[get("/hello/{jloka:.*}")]
 async fn jloka_hello(req: HttpRequest) -> impl Responder {
-    match req.extensions().get::<String>() {
-        Some(msg) => HttpResponse::Ok().body(format!("The message from JLoka is: {}", msg)),
-        None => HttpResponse::Ok().body("No Message Found")
-    }
+    let jloka: &str = req.match_info().query("jloka");
+    let msg: String = format!("The data is: {}", jloka);
+    HttpResponse::Ok().body(msg)
 }
 
 // #[get("/world")]
