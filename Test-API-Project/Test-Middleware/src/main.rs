@@ -4,6 +4,7 @@ use actix_web::{App, Error, HttpMessage, HttpRequest, HttpResponse, HttpServer, 
 async fn main() {
     HttpServer::new(|| {
         App::new()
+        .service(web::redirect("/hello", "/world"))
             .service(jloka_hello)
             .service(
                 web::scope("/world")
