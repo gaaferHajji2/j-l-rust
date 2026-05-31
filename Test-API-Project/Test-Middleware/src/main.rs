@@ -24,7 +24,6 @@ async fn jloka_hello(req: HttpRequest) -> impl Responder {
 
 // #[get("/world")]
 async fn jloka_world(req: HttpRequest) -> impl Responder {
-    
     match req.extensions().get::<String>() {
         Some(msg) => HttpResponse::Ok().body(format!("The message from JLoka is: {}", msg)),
         None => HttpResponse::Ok().body("No Message Found")
