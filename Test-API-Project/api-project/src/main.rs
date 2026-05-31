@@ -88,6 +88,7 @@ async fn get_query_data(query_data: Query<JLoka>) -> impl  Responder {
     let jloka_msg = format!("The name is: {}, the age is: {}", query_data.name, query_data.age);
     return HttpResponse::Ok().body(jloka_msg);
 }
+
 #[post("/jloka")]
 async fn get_jloka_data(jloka_data: Json<JLoka>) -> impl Responder {
     let data = format!("The username is: {} & age is: {}", jloka_data.name, jloka_data.age);
